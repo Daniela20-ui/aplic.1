@@ -11,109 +11,113 @@ header {
     color:rgb(0, 0, 0);
     text-align: center;
     padding: 25px;
-    text-shadow: 2px 2px 5px rgb(212, 209, 209);
 }
 
-.presentación {
-    padding: 20px;
-    text-align: center;
+header nav a{
+    color: antiquewhite;
+    margin: 0 10px;
+    text-decoration: none;
 }
 
-.presentación img{
-    width: 100px;
-    max-width: 400px;
+.btn-principal {
+    background: pink;
+    color: rgb(0, 0, 0);
+    padding: 12px 25px;
+    border : none;
     border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.presentación h2{
-    color: cadetblue;
-}
-
-.btn-acción {
-    padding: 15px 30px;
-    background: linear-gradient(45deg, red, yellow);
-    color: bisque;
-    border: none;
-    border-radius: 12px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 2px 2px 8px black;
-    transition: background 0.3s, transform 0.3s;
+    transition: transform 0.3s, background 0.3s;
 }
 
-.btn-acción:hover {
-    background: linear-gradient(45deg, blue, red);
-    transform: scale(1.1);
+.btn-principal:hover {
+    background: palevioletred;
+    transform: scale(1.08);
 }
 
-/* Galeria */
+/* Galeria estilo cards */
 .galeria {
-    padding: 20px;
-    text-align: center;
-}
-
-.galeria h2{
-    margin-bottom: 20px;
-    color: chocolate;
-}
-
-.imagenes {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-}
-
-.imagenes img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 12px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.imagenes img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px black(0,0,0,0,.5);
-}
-
-/*Footer con redes sociales */
-footer{
-    background: gray;
-    color: aliceblue;
-    text-align: center;
     padding: 20px;
-    margin-top: 30px;
 }
 
-.redes {
-    margin: 10px 0;
+.card img{
+    width: 100%;
+    height: auto;
+}
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px black(0,0,0,0.25);
 }
 
+/* Formulario */
+form{
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+form label{
+    display: block;
+    margin: 12px 0 5px;
+}
+
+form input, form textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid yellow;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+form button{
+    background: rgb(160, 128, 248);
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+form button:hover{
+    background: rgb(241, 141, 59);
+}
+
+/* Redes Sociales */
 .redes a {
     font-size: 28px;
     margin: 0 12px;
-    color: bisque;
+    color: rgb(229, 220, 245);
     text-decoration: none;
     transition: transform 0.3s, color 0.3s;
 }
 
 .redes a:hover {
     transform: scale(1.2);
-    color: cornflowerblue;
+    color: rgb(120, 161, 238);
 }
 
-/* Responsive desde 768px */
-@media (min-width: 768px){
-    .presentación{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        padding: 40px;
-        text-align: left;
-    }
+footer{
+    background: black;
+    color: brown;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
 
-    .presentación img{
-        margin-bottom: 0;
+/* Media Queries */
+@media (max-width: 768px) {
+    .galeria{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1024px){
+    body {
+        background: palevioletred;
     }
 }

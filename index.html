@@ -3,42 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Completa Responsiva</title>
+    <title>Proyecto web avanzado</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    
     <header>
-        <h1>Bienvenido a mi Sitio Web </h1>
+        <h1>Mi proyecto Web</h1>
+        <nav>
+            <a href="#galeria">Galeria</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
     </header>
 
-    <section class="presentación">
-        <img src="https://www.servnet.mx/hubfs/Blog/Blog_Articulos/Blog_Art%C3%ADculos/Blog_Articulos_2023_Junio/Blog_Articulos_2023_Junio_Art35_REDI/Que-es-la-red-informatica-y-para-que-sirve.png" alt="Imagen Decorativa">
-        <div>
-            <h2>Sobre Mi</h2>
-            <p>Soy estudiante de Desarrollo Web, y esta es mi primera web con diseño responsivo, galeria de imagenes, botones animados y redes sociales</p>
-            <button class="btn-acción">Contáctame</button>
-        </div>
-    </section>
+    <main>
+        <section id="intro">
+            <h2>Bienvenido</h2>
+            <p>Explora este sitio responsivo y accesible con buenas practicas, iconos de redes sociales y efectivos visuales</p>
+            <button class="btn-principal">Ver proyectos</button>
+        </section>
 
-    <section class="galeria">
-        <h2>Galeria de Proyectos</h2>
-        <div class="imagenes">
-        <img src="https://alphaenginyeria.com/wp-content/uploads/2022/08/Tipos-de-redes.webp" alt="proyecto1">
-        <img src="https://cdn.prod.website-files.com/62e153e41d6ee298cc9a98f7/635c333a664d9ef603071e89_network-security.webp" alt="proyecto2">
-        <img src="https://www.aboutespanol.com/thmb/CLoaLCYYPqaAHPbjaBopjw-ZDwM=/2162x1390/filters:fill(auto,1)/Red-social-en-Internet-56a01c8a3df78cafdaa02b2d.jpg" alt="proyecto3">
-        <img src="https://www.map24.com/wp-content/uploads/2022/08/29980824_s-768x512.jpg" alt="proyecto4">
-        </div>
-    </section>
+        <section id="galeria"> 
+            <h2>Galeria de proyectos</h2>
+            <div class="galeria">
+                <div class="card">
+                    <img src="https://www.xtrafondos.com/wallpapers/montanas-con-nieve-en-cielo-nublado-4595.jpg" alt="Paisaje de Montaña Nevando">
+                    <p>Proyecto1</p>
+                </div>
+            <div class="card">
+                <img src="https://static.vecteezy.com/system/resources/previews/013/000/115/non_2x/beautiful-sunset-tropical-beach-with-palm-tree-and-pink-sky-for-travel-and-vacation-in-holiday-relax-time-photo.JPG" alt="playa tropical al atardecer">
+                <p>Proyecto2</p>
+            </div>    
+            <div class="card">
+                <img src="https://th.bing.com/th/id/R.1217ffb1cd93670f2b7e80773b09d08d?rik=YfZfec3Z2dR6fw&pid=ImgRaw&r=0" alt="ciudad iluminada de noche">
+                <p>Proyecto3</p>
+            </div>
+          </div>
+        </section>
+        <section id="contacto">
+            <h2>Formulario de contacto</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombe" placeholder="tu nombre" required>
+                
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" placeholder="@tucorreo@mail" required>
 
+                <label for="nombre">Mensaje:</label>
+                <textarea type="mensaje" name="Mensaje" placeholder="Escribe tu mensaje" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
     <footer>
         <p>Sígueme en:</p>
         <div class="redes">
-            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" title="Youtube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/explore"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.snapchat.com"><i class="fab fa-snapchat"></i></a>
         </div>
         <p>© 2025 Mi Web Personal - Miluska Robles Ch.</p>
     </footer>
