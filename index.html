@@ -3,70 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto web avanzado</title>
+    <title>Galeria Circular Animada</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+    
     <header>
-        <h1>Mi proyecto Web</h1>
-        <nav>
-            <a href="#galeria">Galeria</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
+        <h1>Galeria Circular con Transiciones</h1>
     </header>
 
-    <main>
-        <section id="intro">
-            <h2>Bienvenido</h2>
-            <p>Explora este sitio responsivo y accesible con buenas practicas, iconos de redes sociales y efectivos visuales</p>
-            <button class="btn-principal">Ver proyectos</button>
-        </section>
-
-        <section id="galeria"> 
-            <h2>Galeria de proyectos</h2>
-            <div class="galeria">
-                <div class="card">
-                    <img src="https://www.xtrafondos.com/wallpapers/montanas-con-nieve-en-cielo-nublado-4595.jpg" alt="Paisaje de Montaña Nevando">
-                    <p>Proyecto1</p>
-                </div>
-            <div class="card">
-                <img src="https://static.vecteezy.com/system/resources/previews/013/000/115/non_2x/beautiful-sunset-tropical-beach-with-palm-tree-and-pink-sky-for-travel-and-vacation-in-holiday-relax-time-photo.JPG" alt="playa tropical al atardecer">
-                <p>Proyecto2</p>
-            </div>    
-            <div class="card">
-                <img src="https://th.bing.com/th/id/R.1217ffb1cd93670f2b7e80773b09d08d?rik=YfZfec3Z2dR6fw&pid=ImgRaw&r=0" alt="ciudad iluminada de noche">
-                <p>Proyecto3</p>
-            </div>
-          </div>
-        </section>
-        <section id="contacto">
-            <h2>Formulario de contacto</h2>
-            <form>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombe" placeholder="tu nombre" required>
-                
-                <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" placeholder="@tucorreo@mail" required>
-
-                <label for="nombre">Mensaje:</label>
-                <textarea type="mensaje" name="Mensaje" placeholder="Escribe tu mensaje" required></textarea>
-
-                <button type="submit">Enviar</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>Sígueme en:</p>
-        <div class="redes">
-            <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
-            <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.tiktok.com/explore"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.snapchat.com"><i class="fab fa-snapchat"></i></a>
+    <section class="galeria">
+        <div class="circulo-slider">
+            <img src="https://imagenes-bonitas.com/wp-content/uploads/2019/06/mar-fondos.jpg" alt="Mar">
+            <img src="https://www.xtrafondos.com/wallpapers/atardecer-naranja-en-la-playa-6029.jpg" alt="Atardecer">
+            <img src="https://www.gratistodo.com/wp-content/uploads/2017/02/Playas-6.jpg" alt="Playa">
         </div>
-        <p>© 2025 Mi Web Personal - Miluska Robles Ch.</p>
+
+        <div class="circulo-slider">
+            <img src="https://1.bp.blogspot.com/_PxLAKHI0EqI/THsqQgGZHyI/AAAAAAAAAI4/5W7Gx5TtMFw/s1600/26+flor+de+mayo.JPG" alt="Planta">
+            <img src="https://www.gratistodo.com/wp-content/uploads/2017/05/Fotos-de-Mariposas-3.jpg" alt="Mariposa">
+            <img src="https://i.pinimg.com/originals/d2/5b/4b/d25b4b8aad3592849c0949e74b5d6149.jpg" alt="Colibri">
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Galeria Circular Animada</p>
     </footer>
 </body>
 </html>
