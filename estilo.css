@@ -1,90 +1,118 @@
-/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
 header {
-    background: linear-gradient(90deg, #005f99, #007acc);
-    color: white;
-    text-align: center;
-    padding: 1.5rem 0;
+  background-color: #9ac8f3;
+  color: rgb(0, 0, 0);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
+.logo {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-header p {
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
+nav {
+  display: flex;
+  gap: 20px;
 }
 
-main {
-    padding: 2rem;
+nav a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.tool-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-.tool-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    padding: 1rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 
-.tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+.card {
+  margin: 20px 0;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
 }
 
-.tool-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+.card:hover {
+  transform: scale(1.02);
 }
 
-.tool-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease-in-out;
 }
 
-.tool-card p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 1rem;
+.card:hover img {
+  transform: scale(1.05);
 }
 
-.tool-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-    font-size: 0.9rem;
-    color: #333;
+.card .info {
+  padding: 15px;
+  background-color: #ebb0b0;
 }
 
-tool-card ul li {
-    margin-bottom: 0.5rem;
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
 }
 
 footer {
-    background: #005f99;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
+  background-color: #e4a7a7;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: #660000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
 }
