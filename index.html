@@ -1,84 +1,82 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Turismo en Cusco</title>
-  <link rel="stylesheet" href="estilo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turismo Perú</title>
+    <link rel="shortcut icon" href="imagen/android-chrome-192x192.png">
+    <!-- Font Awesome-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
+    <header>
+        <h1>Turismo Perú</h1>
 
-  <header>
-    <div class="logo">Ciudad del Cusco</div>
-    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-    <nav id="nav">
-      <a href="#inicio">Inicio</a>
-      <a href="#lugares">Lugares</a>
-      <a href="#precios">Precios</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+        <input type="checkbox" id="menu-toggle" placeholder="contacto">
+        <label for="menu-toggle" class="menu-icon">
+            <i class="fas fa-bars"></i>
+        </label>
 
-  <section id="inicio">
-    <h1>Bienvenidos a Cusco</h1>
-    <p>¡Visita Cusco, la joya del Perú, y sumérgete en una experiencia inolvidable! Cusco te espera con sus impresionantes ruinas incas, su rica historia, su vibrante cultura y paisajes andinos de ensueño. Descubre la magia de la antigua capital del imperio Inca, explora sus callejuelas empedradas, maravíllate con la arquitectura colonial y déjate llevar por la calidez de su gente. ¡Cusco te espera con los brazos abiertos! </p>
-  </section>
+        <nav class="menu">
+            <a href="#destinos">Destinos</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
 
-  <section id="lugares">
-    <h2>Lugares Turísticos</h2>
-    <div class="card">
-      <img src="https://images.pexels.com/photos/2929906/pexels-photo-2929906.jpeg?cs=srgb&dl=photo-of-machu-picchu-2929906.jpg&fm=jpg" alt="Machu Picchu">
-      <div class="info">
-        <h3>Machu Picchu</h3>
-        <p>Una de las 7 maravillas del mundo moderno.</p>
-      </div>
-    </div>
+    <main>
+        <section id="intro">
+            <h2>Descrubre el Perú Magico</h2>
+            <p>Explora Machu Picchu, la Amazonia y mas lugares impresionantes.</p>
+            <button class="btn-reserva">Reserva tu viaje</button>
+        </section>
 
-    <div class="card">
-      <img src="https://image.freepik.com/free-photo/saksaywaman-cusco-peru_78361-2915.jpg" alt="Saksaywaman">
-      <div class="info">
-        <h3>Saksaywaman</h3>
-        <p>Una impresionante fortaleza ceremonial Inca.</p>
-      </div>
-    </div>
+        <section id="destinos">
+            <div class="card">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.-zEaH67LbWFVALrtODYD5AHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="imagen1">
+                <h3>Machu Picchu</h3>
+            </div>
+            <div class="card">
+                <img src="https://www.viajescomfama.com/portals/1139/Images/amazonas/viajescomfama-amazonas-01.jpg" alt="imagen2">
+                <h3>Amazonas</h3>
+            </div>
+            <div class="card">
+                <img src="https://www.peru.travel/Contenido/General/Imagen/en/43/1.1/Huacachina.jpg" alt="imagen3">
+                <h3>Huacachina</h3>
+            </div>
+        </section>
+    </main>
 
-    <div class="card">
-      <img src="https://www.mundomapi.com/images/tours/valle-sagrado-tours-cusco-1597877674.jpg" alt="Valle Sagrado">
-      <div class="info">
-        <h3>Valle Sagrado</h3>
-        <p>Un valle fértil lleno de historia y cultura.</p>
-      </div>
-    </div>
-  </section>
+    <footer>
+        <p>Siguenos en:</p>
+        <div class="redes">
+            <a href="#">Facebook <i class="fab fa-facebook"></i></a>
+            <a href="#">Instagram <i class="fab fa-instagram"></i></a>
+            <a href="#">Youtube <i class="fab fa-youtube"></i></a>
+        </div>
+        <p>© 2025 Turismo Peru</p>
+    </footer>
 
-  <section id="precios">
-    <h2>Precios Referenciales</h2>
-    <ul>
-      <li>Lima - Cusco (aéreo): S/60 - S/150</li>
-      <li>Machu Picchu (entrada): S/40 aprox.</li>
-      <li>Tour Valle Sagrado: desde S/35</li>
-      <li>Alojamiento: desde S/100 por noche</li>
-    </ul>
-  </section>
+   <!--formulario flotante-->
+   
+   <div class="form-flotante" id="contacto">
+   <h3>contactanos</h3>
+   <form >
+    <input type="text" placeholder="Tu nombre" required>
+    <input type="email" placeholder="correo" required>
+    <textarea placeholder="mensaje" required></textarea>
+    <button type="submit">Enviar</button>
+   </form>
+   </div>
 
-  <section id="contacto">
-    <h2>Publicidad y Contacto</h2>
-    <p>Contáctanos a: <a href="mailto:visitacusco@gmail.com">visitacusco@gmail.com</a></p>
-    <p>O Llamar al Número: 900198325</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Cusco  - Miluska Robles Charrez.</p>
-  </footer>
-
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const nav = document.getElementById('nav');
-
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-  </script>
-
+   <!--boton whatsapp con menu-toggle-->
+   <input type="checkbox" id="chat-toggle" placeholder="watsapp">
+   <label for="chat-toggle" class="watsapp"><i class="fa fa-watsapp"></i></label>
+   <!--ventana de chat-flotante-->¡
+   <div class="chat-flotante">
+    <h3>Hola </h3>
+    <p>¿En que podemos ayudarte?</p>
+    <textarea placeholder="Escribe tu mensaje......"></textarea>
+    <button>Enviar</button>
 </body>
 </html>
