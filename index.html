@@ -1,80 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Biblioteca Virtual</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Registro + Login Accesible</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-    <h1>📚 Biblioteca Virtual</h1>
-    </header>
 
-    <main>
-    <!-- Sección Registrar Libro -->
-    <section class="form-section">
-    <h2>➕ Registrar Libro</h2>
-    <form id="formLibro">
-        <input type="text" id="titulo" placeholder="Título" required>
-        <input type="text" id="autor" placeholder="Autor" required>
-        <input type="number" id="anio" placeholder="Año" required>
-        <input type="text" id="categoria" placeholder="Categoría" required>
-        <button type="submit">Agregar Libro</button>
+  <h1>🧩 Ejemplo Práctico: Registro + Login Accesible</h1>
+
+  <!-- Formulario de Registro -->
+  <section class="form-section">
+    <h2>📝 Registro</h2>
+    <form id="registroForm">
+      <label for="nombre">👤 Nombre completo</label>
+      <input type="text" id="nombre" required>
+
+      <label for="email">📧 Correo electrónico</label>
+      <input type="email" id="email" required>
+
+      <label for="password">🔒 Contraseña</label>
+      <input type="password" id="password" required>
+
+      <button type="submit">✅ Registrarse</button>
+
+      <div id="registroMensaje"></div>
     </form>
-    </section>
+  </section>
 
-    <!-- Lista de Libros -->
-    <section class="table-section">
-    <h2>📑 Lista de Libros</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Año</th>
-            <th>Categoría</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody id="listaLibros"></tbody>
-    </table>
-    </section>
+  <!-- Formulario de Login -->
+  <section class="form-section">
+    <h2>🔐 Login</h2>
+    <form id="loginForm">
+      <label for="loginEmail">📧 Correo electrónico</label>
+      <input type="email" id="loginEmail" required>
 
-    <!-- Registrar Préstamo -->
-    <section class="form-section">
-    <h2>📌 Registrar Préstamo</h2>
-    <form id="formPrestamo">
-        <input type="text" id="alumno" placeholder="Alumno" required>
-        <input type="number" id="idLibro" placeholder="ID del Libro" required>
-        <input type="date" id="fecha" required>
-        <button type="submit">Registrar Préstamo</button>
+      <label for="loginPassword">🔑 Contraseña</label>
+      <input type="password" id="loginPassword" required>
+
+      <button type="submit">🔵 Ingresar</button>
+
+      <div id="loginMensaje"></div>
     </form>
-    </section>
+  </section>
 
-    <!-- Lista de Préstamos -->
-    <section class="table-section">
-    <h2>📋 Lista de Préstamos</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Alumno</th>
-            <th>Libro ID</th>
-            <th>Fecha</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody id="listaPrestamos"></tbody>
-    </table>
-    </section>
-    </main>
-
-    <footer>
-    <p>© 2025 IESTP Recuay - Arquitectura y Diseño Web - ROBLES CHARREZ MILUSKA</p>
-    </footer>
-
-    <script src="app.js"></script>
+  <script src="app.js"></script>
+  <footer>
+  <p>© 2025 Registro + Login Accesible | Desarrollado por Robles Charrez Miluska</p>
+</footer>
 </body>
+
 </html>

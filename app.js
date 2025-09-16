@@ -1,97 +1,59 @@
-// ---- LIBROS ----
-let contadorLibros = 1;
-const formLibro = document.getElementById("formLibro");
-const listaLibros = document.getElementById("listaLibros");
+// REGISTRO
+document.getElementById("registroForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-formLibro.addEventListener("submit", function(e) {
-    e.preventDefault();
+  const nombre = document.getElementById("nombre").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const mensajeDiv = document.getElementById("registroMensaje");
 
-    const titulo = document.getElementById("titulo").value;
-    const autor = document.getElementById("autor").value;
-    const anio = document.getElementById("anio").value;
-    const categoria = document.getElementById("categoria").value;
+  // Validaciones
+  if (!nombre || !email || !password) {
+    mensajeDiv.textContent = "❌ Todos los campos son obligatorios.";
+    mensajeDiv.className = "error";
+    return;
+  }
 
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-    <td>${contadorLibros}</td>
-    <td>${titulo}</td>
-    <td>${autor}</td>
-    <td>${anio}</td>
-    <td>${categoria}</td>
-    <td><button class="btn-delete">❌</button></td>
-    `;
+  if (password.length < 6) {
+    mensajeDiv.textContent = `❌ La contraseña debe tener mínimo 6 caracteres(actualmente tiene ${password.length}).`
+    mensajeDiv.className = "error";
+    return;
+  }
 
-    listaLibros.appendChild(fila);
-    contadorLibros++;
-    formLibro.reset();
+  // Guardar en localStorage (simulación de base de datos)
+  const usuario = {
+    nombre,
+    email,
+    password
+  };
+  localStorage.setItem("usuarioRegistrado", JSON.stringify(usuario));
+
+  mensajeDiv.textContent = `✅ Usuario ${nombre} registrado correctamente.`;
+  mensajeDiv.className = "success";
 });
 
-listaLibros.addEventListener("click", function(e) {
-    if (e.target.classList.contains("btn-delete")) {
-    e.target.closest("tr").remove();
-    }
-});
 
-// ---- PRÉSTAMOS ----
-let contadorPrestamos = 1;
-let editandoPrestamo = null;
-const formPrestamo = document.getElementById("formPrestamo");
-const listaPrestamos = document.getElementById("listaPrestamos");
+// LOGIN
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-formPrestamo.addEventListener("submit", function(e) {
-    e.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+  const mensajeDiv = document.getElementById("loginMensaje");
 
-    const alumno = document.getElementById("alumno").value;
-    const idLibro = document.getElementById("idLibro").value;
-    const fecha = document.getElementById("fecha").value;
+  const usuarioGuardado = JSON.parse(localStorage.getItem("usuarioRegistrado"));
 
-    if (editandoPrestamo) {
-    // 🔄 Editar préstamo existente (incluye Libro ID)
-    editandoPrestamo.cells[1].innerText = alumno;
-    editandoPrestamo.cells[2].innerText = idLibro;
-    editandoPrestamo.cells[3].innerText = fecha;
-    editandoPrestamo = null;
-    } else {
-    // ➕ Nuevo préstamo
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-    <td>${contadorPrestamos}</td>
-    <td>${alumno}</td>
-    <td>${idLibro}</td>
-    <td>${fecha}</td>
-    <td>Prestado</td>
-    <td>
-        <button class="btn-devolver">✔</button>
-        <button class="btn-edit">✏</button>
-        <button class="btn-delete">❌</button>
-    </td>
-    `;
+  if (!usuarioGuardado) {
+    mensajeDiv.textContent = "❌ No hay usuarios registrados.";
+    mensajeDiv.className = "error";
+    return;
+  }
 
-    listaPrestamos.appendChild(fila);
-    contadorPrestamos++;
-    }
-
-    formPrestamo.reset();
-});
-
-// 🎯 Acciones en préstamos
-listaPrestamos.addEventListener("click", function(e) {
-    const fila = e.target.closest("tr");
-
-    if (e.target.classList.contains("btn-devolver")) {
-    fila.cells[4].innerText = "Devuelto";
-    e.target.remove();
-    }
-
-    if (e.target.classList.contains("btn-edit")) {
-    // 🔄 Cargar datos de la fila al formulario (incluye Libro ID)
-    document.getElementById("alumno").value = fila.cells[1].innerText;
-    document.getElementById("idLibro").value = fila.cells[2].innerText;
-    document.getElementById("fecha").value = fila.cells[3].innerText;
-    editandoPrestamo = fila;
-    }
-
-    if (e.target.classList.contains("btn-delete")) {
-    fila.remove();
-    }
+  if (email === usuarioGuardado.email && password === usuarioGuardado.password) {
+    mensajeDiv.textContent =` ✅ Bienvenido, ${usuarioGuardado.nombre}`;
+    mensajeDiv.className = "success";
+  } else {
+    mensajeDiv.textContent = "❌ Correo o contraseña incorrectos.";
+    mensajeDiv.className = "error";
+  }
 });
