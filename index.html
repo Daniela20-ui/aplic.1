@@ -1,157 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulación Sistema de Usuarios</title>
-<style>
-body{font-family:Arial;background:#f2f2f2;margin:0;padding:0}
-header{background:#1e88e5;color:#fff;padding:15px;text-align:center;font-size:24px}
-.container{width:90%;margin:auto;margin-top:20px}
-button{padding:8px 15px;border:none;border-radius:5px;cursor:pointer}
-.btn-add{background:#43a047;color:#fff}
-.btn-error{background:#e53935;color:#fff}
-.btn-edit{background:#fb8c00;color:#fff}
-.btn-save{background:#1e88e5;color:#fff}
-.btn-close{background:#9e9e9e;color:#fff}
-input,select{padding:8px;margin:5px;width:200px}
-.table{width:100%;border-collapse:collapse;margin-top:20px;background:#fff}
-.table th,.table td{border:1px solid #ccc;padding:10px;text-align:left}
-#modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;justify-content:center;align-items:center}
-.modal-content{background:#fff;padding:20px;border-radius:10px;width:300px}
-#errorBox{padding:10px;background:#e53935;color:#fff;margin-top:10px;display:none}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Pruebas - Formulario</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>Simulación de Sistema de Usuarios</header>
-<div class="container">
-    <button class="btn-add" onclick="openModal()">Añadir Usuario</button>
-    <button class="btn-error" onclick="toggleFail()">Simular Falla API</button>
 
-    <div>
-        <input type="text" id="search" placeholder="Buscar..." onkeyup="render()">
-        <select id="filterRole" onchange="render()">
-            <option value="">Todos los roles</option>
-            <option>Admin</option>
-            <option>Editor</option>
-            <option>Usuario</option>
-        </select>
+    <div class="container">
+        <h1>Módulo de Pruebas Funcionales</h1>
+        <p class="sub">Simulación con validaciones y casos negativos</p>
+
+        <form id="formTest">
+            <label>Nombre:</label>
+            <input type="text" id="nombre" placeholder="Ingrese su nombre">
+
+            <label>Correo:</label>
+            <input type="email" id="correo" placeholder="Ingrese su correo">
+
+            <label>Edad:</label>
+            <input type="number" id="edad" placeholder="Ingrese su edad">
+
+            <label>Contraseña:</label>
+            <input type="password" id="password" placeholder="Ingrese su contraseña">
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <div id="resultado"></div>
+
+        <button id="btnEvidencia" class="evidencia">🤳 Generar evidencia</button>
+
     </div>
 
-    <div id="errorBox"></div>
-
-    <table class="table" id="userTable">
-        <thead>
-            <tr>
-                <th>ID</th><th>Nombre</th><th>Rol</th><th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-
-<div id="modal">
-    <div class="modal-content">
-        <h3 id="modalTitle">Añadir Usuario</h3>
-        <input id="nameInput" placeholder="Nombre">
-        <select id="roleInput">
-            <option>Admin</option>
-            <option>Editor</option>
-            <option>Usuario</option>
-        </select>
-        <br>
-        <button class="btn-save" onclick="saveUser()">Guardar</button>
-        <button class="btn-close" onclick="closeModal()">Cerrar</button>
-    </div>
-</div>
-
-<script>
-let fail = false;
-let editID = null;
-let DB = [
-    {id:1, nombre:"Carlos", rol:"Admin"},
-    {id:2, nombre:"Ana", rol:"Usuario"},
-    {id:3, nombre:"Luis", rol:"Editor"}
-];
-
-function fakeAPI(action, data){
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            if(fail && Math.random()<0.7) return reject("Falla del servidor");
-            if(action=="get") resolve(DB);
-            if(action=="add"){ DB.push(data); resolve(true);}    
-            if(action=="edit"){
-                let i=DB.findIndex(u=>u.id==data.id);
-                DB[i]=data;
-                resolve(true);
-            }
-        },500);
-    });
-}
-
-function toggleFail(){ fail = !fail; alert("Falla API: " + (fail?"ACTIVADA":"DESACTIVADA")); }
-
-function render(){
-    fakeAPI("get").then(users=>{
-        document.getElementById("errorBox").style.display="none";
-
-        let search = document.getElementById("search").value.toLowerCase();
-        let role = document.getElementById("filterRole").value;
-
-        let filtered = users.filter(u=>
-            (u.nombre.toLowerCase().includes(search)) &&
-            (role==="" || u.rol===role)
-        );
-
-        let rows="";
-        filtered.forEach(u=>{
-            rows+=`<tr>
-                <td>${u.id}</td>
-                <td>${u.nombre}</td>
-                <td>${u.rol}</td>
-                <td><button class='btn-edit' onclick='editUser(${u.id})'>Editar</button></td>
-            </tr>`;
-        });
-        document.querySelector("#userTable tbody").innerHTML=rows;
-
-    }).catch(err=>{
-        let box=document.getElementById("errorBox");
-        box.style.display="block";
-        box.innerText=err;
-    });
-}
-
-function openModal(){ editID=null; document.getElementById("modalTitle").innerText="Añadir Usuario"; document.getElementById("modal").style.display="flex"; }
-function closeModal(){ document.getElementById("modal").style.display="none"; }
-
-function editUser(id){
-    const u = DB.find(x=>x.id==id);
-    editID=id;
-    document.getElementById("modalTitle").innerText="Editar Usuario";
-    document.getElementById("nameInput").value=u.nombre;
-    document.getElementById("roleInput").value=u.rol;
-    document.getElementById("modal").style.display="flex";
-}
-
-function saveUser(){
-    let nombre = document.getElementById("nameInput").value;
-    let rol = document.getElementById("roleInput").value;
-
-    if(nombre.trim()==="") return alert("Ingrese un nombre");
-
-    if(editID){
-        fakeAPI("edit",{id:editID,nombre,rol}).then(()=>{
-            closeModal(); render();
-        }).catch(e=>alert(e));
-    } else {
-        let newUser={id:Date.now(),nombre,rol};
-        fakeAPI("add",newUser).then(()=>{
-            closeModal(); render();
-        }).catch(e=>alert(e));
-    }
-}
-
-render();
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
