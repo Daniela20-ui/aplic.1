@@ -1,82 +1,541 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistema Educativo - IESTP RECUAY (Clon)</title>
-  <link rel="stylesheet" href="stylo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Matrícula Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="https://.netlify.app/favicon.ico" alt="IESTP" onerror="this.style.display='none'">
-    <div>
-      <h1>Sistema Educativo - IESTP RECUAY</h1>
-      <div class="small">Registro de Estudiantes • Asignaturas • Notas (localStorage)</div>
+    <!-- Header con navegación -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap fa-2x"></i>
+                <h1>Sistema de Matrícula Online</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">
+                        <i class="fas fa-home"></i> Inicio
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-page="register">
+                        <i class="fas fa-user-plus"></i> Registro
+                    </a></li>
+                    <li><a href="#" class="nav-link" data-page="listing">
+                        <i class="fas fa-list"></i> Listado
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenedor principal para las páginas -->
+    <main class="container">
+        <!-- Página de Inicio -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <h2><i class="fas fa-university"></i> Bienvenido al Sistema de Matrícula Online</h2>
+                <p class="subtitle">Gestiona tus matrículas académicas de forma rápida, segura y sencilla</p>
+                
+                <div class="quick-actions">
+                    <button class="btn btn-primary nav-link" data-page="register">
+                        <i class="fas fa-user-plus"></i> Nueva Matrícula
+                    </button>
+                    <button class="btn btn-success nav-link" data-page="listing">
+                        <i class="fas fa-users"></i> Ver Estudiantes
+                    </button>
+                    <button class="btn btn-outline" id="quick-stats">
+                        <i class="fas fa-chart-line"></i> Ver Estadísticas
+                    </button>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-edit fa-2x"></i>
+                    </div>
+                    <h3>Registro Sencillo</h3>
+                    <p>Formulario intuitivo para registrar estudiantes con todos los datos necesarios en pocos pasos.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search fa-2x"></i>
+                    </div>
+                    <h3>Consulta Rápida</h3>
+                    <p>Accede al listado completo con opciones de filtrado y búsqueda avanzada por múltiples criterios.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie fa-2x"></i>
+                    </div>
+                    <h3>Estadísticas Detalladas</h3>
+                    <p>Visualiza datos estadísticos sobre matrículas, carreras más populares y promedios de pago.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-export fa-2x"></i>
+                    </div>
+                    <h3>Exportación de Datos</h3>
+                    <p>Exporta la información a formatos CSV para análisis externo o respaldo de información.</p>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3><i class="fas fa-info-circle"></i> Proceso de Matrícula Paso a Paso</h3>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Registro de Datos</h4>
+                        <p>Completa el formulario con información personal del estudiante.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Selección de Carrera</h4>
+                        <p>Elige la carrera académica y el ciclo correspondiente.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Elección de Cursos</h4>
+                        <p>Selecciona los cursos que el estudiante desea llevar este ciclo.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Confirmación</h4>
+                        <p>Revisa el resumen y confirma la matrícula.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-preview">
+                <h3><i class="fas fa-chart-bar"></i> Estadísticas en Tiempo Real</h3>
+                <div class="stats-grid">
+                    <div class="stat-card-preview">
+                        <div class="stat-number" id="preview-total">0</div>
+                        <div class="stat-label">Estudiantes Totales</div>
+                    </div>
+                    <div class="stat-card-preview">
+                        <div class="stat-number" id="preview-active">0</div>
+                        <div class="stat-label">Matrículas Activas</div>
+                    </div>
+                    <div class="stat-card-preview">
+                        <div class="stat-number" id="preview-revenue">S/ 0</div>
+                        <div class="stat-label">Total Recaudado</div>
+                    </div>
+                    <div class="stat-card-preview">
+                        <div class="stat-number" id="preview-courses">0</div>
+                        <div class="stat-label">Cursos Matriculados</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página de Registro -->
+        <section id="register-page" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-user-plus"></i> Registro de Nueva Matrícula</h2>
+                <p>Completa todos los campos obligatorios (*) para registrar una nueva matrícula</p>
+            </div>
+            
+            <div id="register-message" class="message"></div>
+            
+            <form id="registration-form" class="form-container">
+                <!-- Información Personal -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-user-circle"></i> Información Personal
+                    </h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">
+                                <i class="fas fa-user"></i> Nombres *
+                            </label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Ingresa los nombres" required>
+                            <div class="form-hint">Ej: Juan Carlos</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">
+                                <i class="fas fa-user"></i> Apellidos *
+                            </label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Ingresa los apellidos" required>
+                            <div class="form-hint">Ej: Pérez García</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="documentType">
+                                <i class="fas fa-id-card"></i> Tipo de Documento *
+                            </label>
+                            <select id="documentType" class="form-control" required>
+                                <option value="">Selecciona un tipo</option>
+                                <option value="DNI">DNI</option>
+                                <option value="Carnet Extranjería">Carnet Extranjería</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="documentNumber">
+                                <i class="fas fa-hashtag"></i> Número de Documento *
+                            </label>
+                            <input type="text" id="documentNumber" class="form-control" placeholder="Ingresa el número" required>
+                            <div class="form-hint">Ej: 76543210</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i> Correo Electrónico *
+                            </label>
+                            <input type="email" id="email" class="form-control" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">
+                                <i class="fas fa-phone"></i> Teléfono *
+                            </label>
+                            <input type="tel" id="phone" class="form-control" placeholder="987654321" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información Académica -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-graduation-cap"></i> Información Académica
+                    </h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="career">
+                                <i class="fas fa-book"></i> Carrera *
+                            </label>
+                            <select id="career" class="form-control" required>
+                                <option value="">Selecciona una carrera</option>
+                                <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+                                <option value="Administración">Administración</option>
+                                <option value="Derecho">Derecho</option>
+                                <option value="Medicina">Medicina</option>
+                                <option value="Psicología">Psicología</option>
+                                <option value="Contabilidad">Contabilidad</option>
+                                <option value="Arquitectura">Arquitectura</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cycle">
+                                <i class="fas fa-layer-group"></i> Ciclo Académico *
+                            </label>
+                            <select id="cycle" class="form-control" required>
+                                <option value="">Selecciona un ciclo</option>
+                                <option value="I">I Ciclo</option>
+                                <option value="II">II Ciclo</option>
+                                <option value="III">III Ciclo</option>
+                                <option value="IV">IV Ciclo</option>
+                                <option value="V">V Ciclo</option>
+                                <option value="VI">VI Ciclo</option>
+                                <option value="VII">VII Ciclo</option>
+                                <option value="VIII">VIII Ciclo</option>
+                                <option value="IX">IX Ciclo</option>
+                                <option value="X">X Ciclo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Selección de Cursos -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-clipboard-list"></i> Selección de Cursos
+                    </h3>
+                    <p class="section-subtitle">Selecciona los cursos que el estudiante llevará este ciclo. Los precios varían según la carrera.</p>
+                    
+                    <div class="courses-header">
+                        <div class="courses-filter">
+                            <label for="filter-courses">
+                                <i class="fas fa-filter"></i> Filtrar por carrera:
+                            </label>
+                            <select id="filter-courses" class="form-control">
+                                <option value="">Todas las carreras</option>
+                            </select>
+                        </div>
+                        <div class="courses-total">
+                            <span>Total seleccionado:</span>
+                            <span id="selected-courses-count">0 cursos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-list" id="courses-list">
+                        <!-- Los cursos se cargarán dinámicamente -->
+                    </div>
+                </div>
+                
+                <!-- Resumen y Confirmación -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-file-invoice-dollar"></i> Resumen de Matrícula
+                    </h3>
+                    
+                    <div class="summary-container">
+                        <div class="summary-item">
+                            <span>Subtotal (cursos):</span>
+                            <span id="subtotal-amount">S/ 0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Matrícula administrativa:</span>
+                            <span>S/ 50.00</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total a pagar:</span>
+                            <span id="total-amount">S/ 50.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-check-circle"></i> Confirmar Matrícula
+                        </button>
+                        <button type="button" id="clear-form" class="btn btn-outline">
+                            <i class="fas fa-eraser"></i> Limpiar Formulario
+                        </button>
+                        <button type="button" id="cancel-form" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Página de Listado -->
+        <section id="listing-page" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-list"></i> Listado de Estudiantes Matriculados</h2>
+                <p>Gestiona y consulta todas las matrículas registradas en el sistema</p>
+            </div>
+            
+            <div class="listing-controls">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-input" placeholder="Buscar por nombre, documento o carrera...">
+                    </div>
+                    <button id="clear-search" class="btn btn-sm">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+                
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="filter-career">
+                            <i class="fas fa-filter"></i> Carrera:
+                        </label>
+                        <select id="filter-career" class="form-control">
+                            <option value="">Todas las carreras</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filter-status">
+                            <i class="fas fa-filter"></i> Estado:
+                        </label>
+                        <select id="filter-status" class="form-control">
+                            <option value="">Todos los estados</option>
+                            <option value="active">Activo</option>
+                            <option value="pending">Pendiente</option>
+                            <option value="graduated">Egresado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filter-cycle">
+                            <i class="fas fa-filter"></i> Ciclo:
+                        </label>
+                        <select id="filter-cycle" class="form-control">
+                            <option value="">Todos los ciclos</option>
+                        </select>
+                    </div>
+                    
+                    <button id="export-btn" class="btn btn-primary">
+                        <i class="fas fa-file-export"></i> Exportar CSV
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <div id="listing-count" class="count-badge">
+                        <i class="fas fa-users"></i> <span id="student-count">0</span> estudiantes
+                    </div>
+                    <div class="table-actions">
+                        <button id="refresh-btn" class="btn btn-sm">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                        <button id="print-btn" class="btn btn-sm">
+                            <i class="fas fa-print"></i> Imprimir
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table id="students-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Estudiante</th>
+                                <th>Documento</th>
+                                <th>Carrera</th>
+                                <th>Ciclo</th>
+                                <th>Cursos</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-table-body">
+                            <!-- Los datos se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="table-footer">
+                    <div id="table-message" class="empty-message">
+                        <i class="fas fa-info-circle"></i>
+                        No hay estudiantes matriculados con los filtros seleccionados
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <h3><i class="fas fa-chart-bar"></i> Estadísticas Generales</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="total-students">0</div>
+                            <div class="stat-label">Total de Estudiantes</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="active-students">0</div>
+                            <div class="stat-label">Matrículas Activas</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="total-amount-stats">S/ 0</div>
+                            <div class="stat-label">Total Recaudado</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="average-courses">0.0</div>
+                            <div class="stat-label">Prom. Cursos/Est.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="career-count">0</div>
+                            <div class="stat-label">Carreras Activas</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="current-month">0</div>
+                            <div class="stat-label">Matrículas Este Mes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-graduation-cap"></i> Sistema de Matrícula</h3>
+                <p>Plataforma de gestión académica desarrollada para optimizar el proceso de matrícula universitaria.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#" class="nav-link" data-page="register"><i class="fas fa-user-plus"></i> Nueva Matrícula</a></li>
+                    <li><a href="#" class="nav-link" data-page="listing"><i class="fas fa-list"></i> Listado Completo</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-envelope"></i> Contacto</h3>
+                <p><i class="fas fa-envelope"></i> info@matriculaonline.edu</p>
+                <p><i class="fas fa-phone"></i> (01) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt"></i> Av. Universidad 123, Lima, Perú</p>
+                <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> Información</h3>
+                <p>Sistema desarrollado para la gestión eficiente de matrículas universitarias. Versión 2.0</p>
+                <div class="version">v2.0.1</div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Sistema de Matrícula Online. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para detalles -->
+    <div id="student-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalles del Estudiante</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal">Cerrar</button>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main class="grid">
-    <!-- Estudiantes -->
-    <section class="card">
-      <h2>Registro de Estudiantes</h2>
-      <form id="studentForm">
-        <label>Nombre</label>
-        <input type="text" id="studentName" required placeholder="Ej: Juan Pérez">
-        <label>DNI</label>
-        <input type="text" id="studentDNI" required placeholder="Ej: 12345678">
-        <div class="form-buttons">
-          <button type="submit">Guardar Estudiante</button>
-          <button type="button" id="studentClear" class="btn-ghost">Limpiar</button>
-        </div>
-      </form>
-
-      <table id="studentsTable">
-        <thead><tr><th>#</th><th>Nombre</th><th>DNI</th><th>Acciones</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <!-- Asignaturas -->
-    <section class="card">
-      <h2>Registro de Asignaturas</h2>
-      <form id="subjectForm">
-        <label>Nombre de la Asignatura</label>
-        <input type="text" id="subjectName" required placeholder="Ej: Matemáticas">
-        <div class="form-buttons">
-          <button type="submit">Guardar Asignatura</button>
-          <button type="button" id="subjectClear" class="btn-ghost">Limpiar</button>
-        </div>
-      </form>
-
-      <table id="subjectsTable">
-        <thead><tr><th>#</th><th>Asignatura</th><th>Acciones</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <!-- Notas -->
-    <section class="card full">
-      <h2>Registro de Notas</h2>
-      <form id="gradeForm">
-        <label>Estudiante</label>
-        <select id="gradeStudent"></select>
-        <label>Asignatura</label>
-        <select id="gradeSubject"></select>
-        <label>Nota (0 - 20)</label>
-        <input type="number" id="gradeValue" min="0" max="20" step="0.1" required>
-        <div class="form-buttons">
-          <button type="submit">Guardar Nota</button>
-          <button type="button" id="gradeClear" class="btn-ghost">Limpiar</button>
-        </div>
-      </form>
-
-      <table id="gradesTable">
-        <thead><tr><th>#</th><th>Estudiante</th><th>Asignatura</th><th>Nota</th><th>Acciones</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
