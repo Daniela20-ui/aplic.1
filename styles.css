@@ -1,72 +1,69 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #8a9ae4;
+body{
+    font-family: Arial, sans-serif;
+    background: #f0f4ff;
+    margin:0;
+    padding:0;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
+.container{
+    width: 380px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
 }
 
-.form-section {
-  background: rgb(193, 192, 245);
-  padding: 20px;
-  border-radius: 5px;
-  max-width: 400px;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+h1{
+    text-align: center;
+    color: #333;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
+.sub{
+    text-align: center;
+    margin-bottom: 20px;
+    color:#555;
 }
 
-input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+label{
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
 }
 
-button {
-  margin-top: 15px;
-  padding: 10px;
-  width: 100%;
-  background-color: #ec82ec;
-  color: rgb(5, 5, 5);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    margin-top: 5px;
 }
 
-button:hover {
-  background-color: #d5a4e4;
+button{
+    width: 100%;
+    padding: 12px;
+    background: #0066ff;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-#registroMensaje,
-#loginMensaje {
-  margin-top: 15px;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
+button:hover{
+    background: #004fcc;
 }
 
-.success {
-  background-color: #d1fae5;
-  color: rgb(0, 0, 0);
+.evidencia{
+    background: #ff9800 !important;
+    margin-top: 10px;
 }
 
-.error {
-  background-color: #999dd6;
-  color: #991b1b;
-}
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  text-align: center;
-  background-color: #b2f8f5;
-  color: #1f2937;
-  font-size: 0.9em;
-  border-top: 1px solid #93add3;
+#resultado{
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: none;
 }
